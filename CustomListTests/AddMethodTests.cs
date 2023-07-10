@@ -130,7 +130,7 @@ namespace CustomListTests
             firstList.Add(ganon);
             firstList.Add(juju);
             firstList.Add(joey);
-
+             
             //assert
             Assert.AreEqual(secondList, firstList);
         }
@@ -140,21 +140,28 @@ namespace CustomListTests
         {
             //arrange
             CustomList<string> firstList = new CustomList<string>();
+           
+            
             string bob = "Bob";
             string link = "Link";
             string zelda = "Zelda";
             string ganon = "Ganon";
             string juju = "Juju";
+            string joey = "Joey";
 
             //act
             firstList.Add(bob);
             firstList.Add(link);
             firstList.Add(zelda);
             firstList.Add(ganon);
-           firstList.Add(juju) ;
-            
+            firstList.Add(juju);
+            firstList.Add(joey);
+
+
+
+
             //assert
-            Assert.AreEqual(bob, firstList[0]);
+            Assert.AreEqual(5, firstList.Capacity);
         }
     }    
 

@@ -72,17 +72,18 @@ namespace CustomList
         //Member Methods (CAN DO)
         public void Add(T item)
         {
-            items[count++] = item;
-          if(count >=  capacity )
+           
+            
+            items[count++]= item;
+            List<T> newList = new List<T>();
+            newList.Add(item);
+
+            if (count == capacity)
             {
                 capacity = capacity * 2;
                 items = new T[capacity];
-              
                 
-                
-
-
-
+                    
             }
          
            
