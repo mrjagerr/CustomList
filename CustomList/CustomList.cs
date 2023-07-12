@@ -83,7 +83,7 @@ namespace CustomList
                 capacity = capacity * 2;
                 items = new T[capacity];
                 list.CopyTo(items);
-           }
+            }
            
             //'item' parameter should be added to internal 'items' array
             //if items array is at capacity, double capacity and create new array
@@ -92,10 +92,32 @@ namespace CustomList
 
         public bool Remove(T item)
         {
+            
+
+            if (items.Contains(item))
+            {
+                
+                List<T> list = new List<T>();
+                list.AddRange(items);
+                list.Remove(item);
+                list.CopyTo(items);
+                count--;
+                return true;
+            }
+            
+            else
+            {
+                Console.WriteLine("Item not in this array");
+                return false;
+            }
+        
+            
+                
+                
             //If 'item' exists in the 'items' array, remove its first instance
             //Any items coming after the removed item should be shifted down so there is no empty index.
             //If 'item' was removed, return true. If no item was removed, return false.
-            return false;
+            
         }
 
         public override string ToString()
