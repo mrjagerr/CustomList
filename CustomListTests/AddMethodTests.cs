@@ -161,7 +161,7 @@ namespace CustomListTests
 
 
             //assert
-            Assert.AreEqual(5, firstList.Capacity);
+            Assert.AreEqual(juju, firstList[4]);
         }
     }    
 

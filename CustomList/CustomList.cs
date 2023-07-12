@@ -66,26 +66,24 @@ namespace CustomList
 
 
         }
-       
         
-       
+
+
         //Member Methods (CAN DO)
         public void Add(T item)
         {
-           
-            
-            items[count++]= item;
-            List<T> newList = new List<T>();
-            newList.Add(item);
+            items[count++]=item;
+
+
 
             if (count == capacity)
             {
+                List<T> list = new List<T>();
+                list.AddRange(items);
                 capacity = capacity * 2;
                 items = new T[capacity];
-                
-                    
-            }
-         
+                list.CopyTo(items);
+           }
            
             //'item' parameter should be added to internal 'items' array
             //if items array is at capacity, double capacity and create new array
