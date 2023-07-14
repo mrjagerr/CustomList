@@ -1,10 +1,18 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.XPath;
+using Microsoft.VisualBasic;
 
 namespace CustomList
 {
@@ -122,9 +130,35 @@ namespace CustomList
 
         public override string ToString()
         {
+
+            var result = string.Empty;
+            
+
+                foreach (var item in items)
+                {
+                    result += item;
+
+                
+
+                }
+
+
+            char[] stringArray = result.ToArray();
+            
+            string finalResult = string.Join(",",stringArray);
+
+
+            
             //returns a single string that contains all items from array
-            return "";
+
+
+
+
+
+            return finalResult;
         }
+
+
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
