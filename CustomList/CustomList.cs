@@ -7,6 +7,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace CustomList
         private  T[] items;
         private int capacity;
         private int count;
-         
+        private T itemsInList;
         
         public int Capacity
         {
@@ -59,7 +60,14 @@ namespace CustomList
                 items[index] = value;
             }
         }
+        public T ItemsInList
+        {
+            get { return itemsInList;}
+            set { }
+
+        }
        
+
         
            
             
@@ -160,8 +168,17 @@ namespace CustomList
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
+            List<T> listOne = new List<T>();
+            listOne.AddRange(firstList.items);
+            listOne.AddRange(secondList.items);
+            CustomList<T> combinedList = new CustomList<T>();
+            
+
+            combinedList.items = new T[firstList.capacity + secondList.capacity];
+            listOne.CopyTo(combinedList.items);
+
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
-            return null;
+            return combinedList;
         }
 
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
