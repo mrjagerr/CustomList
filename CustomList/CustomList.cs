@@ -143,9 +143,7 @@ namespace CustomList
                 }
 
 
-            char[] stringArray = result.ToArray();
-            
-            string finalResult = string.Join(",",stringArray);
+          
 
 
             
@@ -155,7 +153,7 @@ namespace CustomList
 
 
 
-            return finalResult;
+            return result;
         }
 
 

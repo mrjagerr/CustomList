@@ -53,7 +53,25 @@ namespace CustomListTests
             string result = firstList.ToString();
 
             //assert
-            Assert.AreEqual("Bob,Link,Zelda", result);
+            Assert.AreEqual("BobLinkZelda", result);
+
+        }
+
+
+        [TestMethod]
+        public void Return_Empty_String_Result()
+        {
+            //arrange
+            CustomList<string> firstList = new CustomList<string>();
+            string empty = string.Empty;
+            
+            //act
+            firstList.Add(empty);
+            
+            string result = firstList.ToString();
+
+            //assert
+            Assert.AreEqual("", result);
 
         }
     }
