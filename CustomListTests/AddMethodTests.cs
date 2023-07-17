@@ -75,16 +75,19 @@ namespace CustomListTests
             string zelda = "Zelda";
             string ganon = "Ganon";
             string juju = "Juju";
-                
+
             //act
+            CustomList<string> secondList = firstList;
             firstList.Add(bob);
             firstList.Add(link);
             firstList.Add(zelda);
-            CustomList<string> secondList = firstList;
+           
             
             secondList.Add(juju);
+            firstList.Add(ganon);
+            
             //assert
-            Assert.AreEqual(8,secondList.Capacity);
+            Assert.AreEqual(8,firstList.Capacity);
 
         }
 

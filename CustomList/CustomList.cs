@@ -23,7 +23,7 @@ namespace CustomList
         private  T[] items;
         private int capacity;
         private int count;
-        private T itemsInList;
+        
         
         public int Capacity
         {
@@ -60,12 +60,7 @@ namespace CustomList
                 items[index] = value;
             }
         }
-        public T ItemsInList
-        {
-            get { return itemsInList;}
-            set { }
-
-        }
+     
        
 
         
@@ -82,25 +77,31 @@ namespace CustomList
 
 
         }
-        
+
 
 
         //Member Methods (CAN DO)
         public void Add(T item)
         {
-            items[count++]=item;
 
-
-
-            if (count == capacity)
+           
+            if (count==capacity)
             {
+                
+                
                 List<T> list = new List<T>();
                 list.AddRange(items);
                 capacity = capacity * 2;
+                
                 items = new T[capacity];
                 list.CopyTo(items);
+                
+
+                
             }
+            items[count++] = item;
            
+
             //'item' parameter should be added to internal 'items' array
             //if items array is at capacity, double capacity and create new array
             //transfer all items to new array
@@ -168,19 +169,23 @@ namespace CustomList
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
-            List<T> listOne = new List<T>();
-            listOne.AddRange(firstList.items);
-            listOne.AddRange(secondList.items);
+            List<T> newListOne = new List<T>();
+            newListOne.AddRange(firstList.items);
+            newListOne.AddRange(secondList.items);
             CustomList<T> combinedList = new CustomList<T>();
-            
+            if (newListOne.Count >=combinedList.capacity)
+            {
+                combinedList.Capacity = newListOne.Capacity;
+               
+            }
 
-            combinedList.items = new T[firstList.capacity + secondList.capacity];
-            listOne.CopyTo(combinedList.items);
+
+            newListOne.CopyTo(combinedList.items);
+            
 
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
             return combinedList;
         }
-
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
