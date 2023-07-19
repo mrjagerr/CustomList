@@ -242,41 +242,57 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
 
-            List<T> listone = new List<T>();
-            listone.AddRange(firstList.items);
+            CustomList<T> combinedListCustomOne = new CustomList<T>();
 
-            List<T> listTwo = new List<T>();
-            listTwo.AddRange(secondList.items);
 
-            CustomList<T> combinedList = new CustomList<T>();
-
+;
+            List<T> finalList = new List<T>();
             foreach (T item in firstList.items)
             {
+                if (item is not 0 or null)
+                {
+                    combinedListCustomOne.Add(item);
+                    finalList.Add(item);
 
-                combinedList.Add(item);
-                
+
+                }
 
 
 
             }
+         
+           
             foreach (T item in secondList.items)
-            {
-                combinedList.Remove(item);
-                
+            {   combinedListCustomOne.Remove(item);
+                finalList.Remove(item);
             }
 
-            
+            combinedListCustomOne.items = new T[finalList.Count];
+
+            combinedListCustomOne.items = finalList.ToArray();
 
 
 
-            //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
-            return combinedList;
+
+
+
+
+
+
+            return combinedListCustomOne;
+
+
+
+
+
+           
+           
 
 
 
 
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
-            return null;
+           
         }
 
 
