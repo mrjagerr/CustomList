@@ -14,17 +14,18 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Microsoft.VisualBasic;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace CustomList
 {
     public class CustomList<T>
     {
         //Member Variables (HAS A)
-        private  T[] items;
+        private T[] items;
         private int capacity;
         private int count;
-        
-        
+
+
         public int Capacity
         {
             get
@@ -33,9 +34,9 @@ namespace CustomList
             }
             set
             {
-                  capacity = value;
+                capacity = value;
             }
-           
+
         }
         public int Count
         {
@@ -48,7 +49,7 @@ namespace CustomList
                 count = value;
             }
         }
-        
+
         public T this[int index]
         {
             get
@@ -60,16 +61,16 @@ namespace CustomList
                 items[index] = value;
             }
         }
-     
-       
 
-        
-           
-            
-        
-                
-         //Constructor
-         public CustomList()
+
+
+
+
+
+
+
+        //Constructor
+        public CustomList()
         {
             capacity = 4;
             count = 0;
@@ -84,23 +85,27 @@ namespace CustomList
         public void Add(T item)
         {
 
-           
-            if (count==capacity)
-            {
-                
-                
-                List<T> list = new List<T>();
-                list.AddRange(items);
-                capacity = capacity * 2;
-                
-                items = new T[capacity];
-                list.CopyTo(items);
-                
 
-                
+            if (count == capacity)
+            {
+
+                if (item != null)
+                {
+                    List<T> list = new List<T>();
+                    list.AddRange(items);
+                    capacity = capacity * 2;
+                    items = new T[capacity];
+                    list.CopyTo(items);
+
+
+
+                }
+
+
+
             }
             items[count++] = item;
-           
+
 
             //'item' parameter should be added to internal 'items' array
             //if items array is at capacity, double capacity and create new array
@@ -109,53 +114,54 @@ namespace CustomList
 
         public bool Remove(T item)
         {
-            
+
 
             if (items.Contains(item))
             {
-                
+
                 List<T> list = new List<T>();
                 list.AddRange(items);
                 list.Remove(item);
                 list.CopyTo(items);
+
                 count--;
                 return true;
             }
-            
+
             else
             {
                 Console.WriteLine("Item not in this array");
                 return false;
             }
-        
-            
-                
-                
+
+
+
+
             //If 'item' exists in the 'items' array, remove its first instance
             //Any items coming after the removed item should be shifted down so there is no empty index.
             //If 'item' was removed, return true. If no item was removed, return false.
-            
+
         }
 
         public override string ToString()
         {
 
             var result = string.Empty;
-            
-
-                foreach (var item in items)
-                {
-                    result += item;
-
-                
-
-                }
 
 
-          
+            foreach (var item in items)
+            {
+                result += item;
 
 
-            
+
+            }
+
+
+
+
+
+
             //returns a single string that contains all items from array
 
 
@@ -169,25 +175,106 @@ namespace CustomList
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
-            List<T> newListOne = new List<T>();
-            newListOne.AddRange(firstList.items);
-            newListOne.AddRange(secondList.items);
-            CustomList<T> combinedList = new CustomList<T>();
-            if (newListOne.Count >=combinedList.capacity)
+
+            CustomList<T> combinedListCustomOne = new CustomList<T>();
+
+
+
+            List<T> listOne = new List<T>();
+            List<T> listTwo = new List<T>();
+            List<T> listCount = new List<T>();
+            List<T> finalList = new List<T>();
+            foreach (T item in firstList.items)
             {
-                combinedList.Capacity = newListOne.Capacity;
-               
+                if (item is not 0 or null)
+                {
+                    combinedListCustomOne.Add(item);
+                    listOne.Add(item);
+
+
+                }
+
+
+
+            }
+            foreach (T item in secondList.items)
+            {
+                if (item is not 0 or null)
+                {
+                    combinedListCustomOne.Add(item);
+                    listTwo.Add(item);
+
+
+                }
+
+            }
+            listCount.AddRange(listOne);
+            listCount.AddRange(listTwo);
+
+
+            foreach (T item in listCount)
+            {
+                if (item is not 0 or null)
+                {
+                    finalList.Add(item);
+                }
+
             }
 
 
-            newListOne.CopyTo(combinedList.items);
+            combinedListCustomOne.items = new T[finalList.Count];
+
+            combinedListCustomOne.items = finalList.ToArray();
+            return combinedListCustomOne;
+
+        }
+
+        
+
+
+           
+            //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
+           
+        
+
+       
+
+        public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        {
+
+            List<T> listone = new List<T>();
+            listone.AddRange(firstList.items);
+
+            List<T> listTwo = new List<T>();
+            listTwo.AddRange(secondList.items);
+
+            CustomList<T> combinedList = new CustomList<T>();
+
+            foreach (T item in firstList.items)
+            {
+
+                combinedList.Add(item);
+                
+
+
+
+            }
+            foreach (T item in secondList.items)
+            {
+                combinedList.Remove(item);
+                
+            }
+
             
+
+
 
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
             return combinedList;
-        }
-        public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
-        {
+
+
+
+
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
             return null;
         }
