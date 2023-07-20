@@ -13,15 +13,34 @@ namespace CustomList
             //step 4 utilize the read only count property
 
 
-            CustomList<string> firstList = new CustomList<string>();
-            Console.WriteLine(firstList.Count);
-           Console.WriteLine(firstList.Capacity);
-            firstList.Add("1");
-            Console.WriteLine(firstList[0]);
+
+            CustomList<int> firstList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            CustomList<int> thirdList = new CustomList<int>();
+            int one = 1;
+            int two = 2;
+            int three = 3;
+            int four = 4;
+            int five = 5;
+            int six = 6;
+
+            //act
+            firstList.Add(one);
+            firstList.Add(three);
+            firstList.Add(five);
+
+
+
+            secondList.Add(two);
+            secondList.Add(one);
+            secondList.Add(six);
 
 
 
 
+            thirdList = firstList - secondList;
+            string resultsTwo = thirdList.ToString();
+            Console.WriteLine(resultsTwo);
 
 
 

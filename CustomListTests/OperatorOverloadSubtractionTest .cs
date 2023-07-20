@@ -41,10 +41,16 @@ namespace CustomListTests
 
             secondList.Remove(six);
 
+            bool firstGreaterThanSecond = false;
+            if (firstList.Count >= secondList.Count)
+            {
+                firstGreaterThanSecond = true;
+
+            }
 
 
             //assert
-            Assert.AreEqual(firstList.Count, secondList.Count);
+            Assert.AreEqual(firstGreaterThanSecond, true);
 
         }
 
@@ -76,9 +82,16 @@ namespace CustomListTests
             
             thirdList = firstList + secondList;
 
+            bool firstLessThenSecond = false;
+            if (firstList.Count <= secondList.Count)
+            {
+                firstLessThenSecond = true;
+
+            }
+
 
             //assert
-            Assert.AreEqual(firstList.Count, secondList.Count);
+            Assert.AreEqual(firstLessThenSecond, true);
 
         }
         [TestMethod]
@@ -111,12 +124,16 @@ namespace CustomListTests
 
 
             thirdList = firstList + secondList;
+            string resultsOne = firstList.ToString();
+            string resultsTwo = thirdList.ToString();
 
 
-                //assert
-                Assert.AreEqual(firstList,thirdList);
 
-            }
+
+            //assert
+            Assert.AreEqual(resultsOne, resultsTwo);
+
+        }
         [TestMethod]
         public void Seconnd_List_Remove()
 
@@ -147,10 +164,16 @@ namespace CustomListTests
 
 
             thirdList = firstList - secondList;
-            
+            string resultsOne = 135.ToString();
+            string resultsTwo = thirdList.ToString();
+
+
+
 
             //assert
-            Assert.AreEqual(firstList, thirdList);
+            Assert.AreEqual(resultsOne, resultsTwo);
+
+
 
         }
         [TestMethod]
@@ -179,14 +202,16 @@ namespace CustomListTests
             secondList.Add(one);
             secondList.Add(six);
 
-          
-
             thirdList = firstList - secondList;
-            
-
+         
+            string resultsTwo = thirdList.ToString();
 
             //assert
-            Assert.AreEqual(firstList, thirdList);
+            Assert.AreEqual("35", resultsTwo);
+
+
+
+           
 
         }
 

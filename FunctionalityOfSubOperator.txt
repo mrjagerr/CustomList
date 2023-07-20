@@ -1,0 +1,67 @@
+CustomList<T> operator- Method 
+
+Removes  items from second list  from the items from first List.
+
+C#
+public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)	
+
+
+
+Parameters
+
+CustomList<T> firstList, CustomList<T> secondList)
+
+Removes  items from second list  from the items from first List.
+
+
+
+Returns
+returns if item is in the first list remove said items then return the value of the new list.
+
+
+
+Implmentations
+ firstList - secondList = thirdList
+
+
+Examples of How to use:
+
+
+
+            CustomList<int> firstList = new CustomList<int>();
+            CustomList<int> secondList = new CustomList<int>();
+            CustomList<int> thirdList = new CustomList<int>();
+            int one = 1;
+            int two = 2;
+            int three = 3;
+            int four = 4;
+            int five = 5;
+            int six = 6;
+
+            //act
+            firstList.Add(one);
+            firstList.Add(three);
+            firstList.Add(five);
+           
+
+
+            secondList.Add(two);
+            secondList.Add(one);
+            secondList.Add(six);
+
+
+
+
+            thirdList = firstList - secondList;
+            foreach (var item in thirdList)
+            {
+                Console.WriteLine(item);
+            }
+           
+
+// console will write out 35 for each item in the thirdlist
+
+ //syntax
+The use of the Method is  to subtract the second list  from the first list and return the items in the new list.
+
+

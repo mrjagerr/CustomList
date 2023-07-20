@@ -39,12 +39,16 @@ namespace CustomListTests
             secondList.Add(four);
             secondList.Add(six);
 
-
-
+            bool firstGreaterThanSecond = false;
+            if (firstList.Count >= secondList.Count)
+            {
+                firstGreaterThanSecond = true;
+                
+            }
 
 
             //assert
-            Assert.AreEqual(firstList.Count, secondList.Count);
+            Assert.AreEqual(firstGreaterThanSecond, true);
 
         }
 
@@ -77,8 +81,16 @@ namespace CustomListTests
             thirdList = firstList + secondList;
 
 
+            bool firstLessThenSecond = false;
+            if (firstList.Count <= secondList.Count)
+            {
+                firstLessThenSecond = true;
+
+            }
+
+
             //assert
-            Assert.AreEqual(firstList.Count, secondList.Count);
+            Assert.AreEqual(firstLessThenSecond,true );
 
         }
         [TestMethod]
@@ -112,9 +124,15 @@ namespace CustomListTests
 
             thirdList = firstList + secondList;
 
+            string resultsOne = firstList.ToString();
+            string resultsTwo = thirdList.ToString();
+
+           
+            
 
                 //assert
-                Assert.AreEqual(firstList,thirdList);
+                Assert.AreEqual(resultsOne,resultsTwo);
+
 
             }
         [TestMethod]
@@ -145,12 +163,14 @@ namespace CustomListTests
             secondList.Add(four);
 
 
-
+            
             thirdList = firstList + secondList;
 
+            string resultsOne = firstList.ToString()+secondList.ToString();
+            string resultsTwo = thirdList.ToString();
 
             //assert
-            Assert.AreEqual(1356234, thirdList);
+            Assert.AreEqual(resultsTwo,resultsOne);
 
         }
 

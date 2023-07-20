@@ -18,7 +18,8 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
+
     {
         //Member Variables (HAS A)
         private T[] items;
@@ -130,7 +131,7 @@ namespace CustomList
 
             else
             {
-                Console.WriteLine("Item not in this array");
+                
                 return false;
             }
 
@@ -157,21 +158,18 @@ namespace CustomList
 
             }
 
-
-
-
-
-
             //returns a single string that contains all items from array
-
-
-
-
 
             return result;
         }
-
-
+        //Custom iterator method
+        public IEnumerator GetEnumerator()
+        {
+            foreach (var item in items)
+            {
+               yield return item;
+            }
+        }
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
@@ -235,9 +233,7 @@ namespace CustomList
            
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
            
-        
-
-       
+ 
 
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
